@@ -7,127 +7,168 @@
 <style>
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;1,500&display=swap');
 
-:root {
-  --pink:#d19fae;
-  --dark:#e2c4d0;
-  --cream:#f3ebf5;
-  --light:#1a1528;
-}
 * { box-sizing:border-box; }
-body {
-  margin:0;
-  min-height:100vh;
-  /* Fondo nocturno sutil, estrellado y acogedor tipo espacio/cielo */
-  background: radial-gradient(circle at 20% 20%, #292238 0%, #151121 60%, #0d0a14 100%);
-  color:#f0e6ec;
-  font-family:'DM Sans',sans-serif;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  padding:20px;
-  /* Estrellitas sutiles de fondo */
-  background-image: 
-    radial-gradient(white 1px, transparent 1px),
-    radial-gradient(rgba(255,255,255,0.6) 1px, transparent 1px),
-    radial-gradient(rgba(215,185,210,0.4) 1.5px, transparent 1.5px);
-  background-size: 50px 50px, 80px 80px, 120px 120px;
-  background-position: 0 0, 20px 40px, 40px 10px;
+
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  min-height: 100vh;
+  background-color: #0d0a14;
 }
+
+body {
+  /* Fondo nocturno espacial inmersivo */
+  background: radial-gradient(circle at 50% 30%, #251c33 0%, #130f1c 65%, #08060d 100%);
+  color: #f0e6ec;
+  font-family: 'DM Sans', sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  /* Estrellitas sutiles repartidas por toda la pantalla */
+  background-image: 
+    radial-gradient(rgba(255,255,255,0.8) 1px, transparent 1px),
+    radial-gradient(rgba(232,170,185,0.5) 1.2px, transparent 1.2px),
+    radial-gradient(rgba(255,255,255,0.4) 1.5px, transparent 1.5px);
+  background-size: 60px 60px, 90px 90px, 140px 140px;
+  background-position: 0 0, 30px 45px, 20px 70px;
+}
+
 .card {
-  width:100%;
-  max-width:420px;
-  background:rgba(30, 25, 44, 0.88);
-  border:1px solid rgba(232, 170, 185, 0.25);
-  border-radius:28px;
-  padding:30px 22px;
-  text-align:center;
-  box-shadow:0 20px 50px rgba(0,0,0,0.5);
-  animation:appear .55s ease;
+  width: 100%;
+  max-width: 420px;
+  background: rgba(26, 21, 36, 0.92);
+  border: 1px solid rgba(232, 170, 185, 0.25);
+  border-radius: 28px;
+  padding: 30px 22px;
+  text-align: center;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.7);
+  animation: appear .55s ease;
   position: relative;
   overflow: hidden;
-  backdrop-filter: blur(10px);
+  backdrop-filter: blur(12px);
 }
-@keyframes appear {
-  from {opacity:0;transform:translateY(18px)}
-  to {opacity:1;transform:translateY(0)}
-}
-h1,h2 {font-family:'Playfair Display',serif;color:#fce4ec;margin: 10px 0;}
-h1 {font-size:28px;line-height:1.2}
-h2 {font-size:24px}
-p {line-height:1.5;font-size:14px;color:#d5c2cc;margin: 10px 0;}
-.buttons {display:flex;gap:12px;margin-top:20px}
-button {
-  font-family:inherit;
-  cursor:pointer;
-  border:0;
-  border-radius:16px;
-  padding:14px 18px;
-  font-size:15px;
-  font-weight:600;
-  transition:.2s;
-}
-button:active {transform:scale(.97)}
-.primary {background:#824c5c;color:#fff8f0;flex:1;box-shadow:0 4px 15px rgba(130,76,92,0.4)}
-.secondary {background:#3b2d38;color:#e8aab9;flex:1;border:1px solid #574250}
-.full {width:100%;margin-top:16px}
 
-/* Opciones elegantes estilo nocturno */
-.options-stack {
-  display:flex;
-  flex-direction:column;
-  gap:12px;
-  margin-top:20px;
+@keyframes appear {
+  from { opacity: 0; transform: translateY(18px); }
+  to { opacity: 1; transform: translateY(0); }
 }
+
+h1, h2 {
+  font-family: 'Playfair Display', serif;
+  color: #fce4ec;
+  margin: 10px 0;
+}
+h1 { font-size: 28px; line-height: 1.2; }
+h2 { font-size: 24px; }
+p { line-height: 1.5; font-size: 14px; color: #d5c2cc; margin: 10px 0; }
+
+.buttons {
+  display: flex;
+  gap: 12px;
+  margin-top: 20px;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+  border: 0;
+  border-radius: 16px;
+  padding: 14px 18px;
+  font-size: 15px;
+  font-weight: 600;
+  transition: .2s;
+}
+
+button:active { transform: scale(.97); }
+
+.primary {
+  background: #824c5c;
+  color: #fff8f0;
+  flex: 1;
+  box-shadow: 0 4px 15px rgba(130,76,92,0.4);
+}
+
+.secondary {
+  background: #3b2d38;
+  color: #e8aab9;
+  flex: 1;
+  border: 1px solid #574250;
+}
+
+.full {
+  width: 100%;
+  margin-top: 16px;
+}
+
+.options-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 20px;
+}
+
 .option-btn {
-  width:100%;
-  background:#261f33;
-  border:2px solid #48384f;
-  color:#f4e6ec;
-  text-align:left;
+  width: 100%;
+  background: #21192e;
+  border: 2px solid #48384f;
+  color: #f4e6ec;
+  text-align: left;
   padding: 16px 20px;
-  border-radius:16px;
-  font-weight:600;
-  font-size:15px;
+  border-radius: 16px;
+  font-weight: 600;
+  font-size: 15px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   transition: all 0.2s ease;
 }
-.option-btn span.icon {
-  font-size: 18px;
-}
+
+.option-btn span.icon { font-size: 18px; }
+
 .option-btn.selected {
-  border-color:#b87d92;
-  background:#472d38;
-  box-shadow:0 0 0 3px rgba(232,170,185,0.2);
+  border-color: #b87d92;
+  background: #472d38;
+  box-shadow: 0 0 0 3px rgba(232,170,185,0.2);
   transform: translateX(4px);
 }
 
 textarea {
-  width:100%;
-  border:1px solid #574250;
-  background:#261f33;
-  border-radius:14px;
-  padding:14px;
-  font-family:inherit;
-  color:#f4e6ec;
-  font-size:14px;
-  margin-top:12px;
-  outline:none;
-  resize:vertical;
-  min-height:80px;
+  width: 100%;
+  border: 1px solid #574250;
+  background: #21192e;
+  border-radius: 14px;
+  padding: 14px;
+  font-family: inherit;
+  color: #f4e6ec;
+  font-size: 14px;
+  margin-top: 12px;
+  outline: none;
+  resize: vertical;
+  min-height: 80px;
 }
 textarea::placeholder { color: #8c7682; }
 
 .progress {
-  height:6px;
-  background:#3b2d38;
-  border-radius:10px;
-  margin-bottom:20px;
-  overflow:hidden;
+  height: 6px;
+  background: #3b2d38;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  overflow: hidden;
 }
-.bar {height:100%;background:#b87d92;transition:.4s}
-.note {font-size:12px;color:#9e8290;margin-top:18px}
+
+.bar {
+  height: 100%;
+  background: #b87d92;
+  transition: .4s;
+}
+
+.note {
+  font-size: 12px;
+  color: #9e8290;
+  margin-top: 18px;
+}
 </style>
 </head>
 <body>
@@ -151,7 +192,7 @@ const answers = {
   date:""
 };
 
-const whatsappNumber = "5493751358569"; // ACORDATE DE CAMBIAR ESTO POR TU NÚMERO
+const whatsappNumber = "5493751358569"; // ACORDATE DE PONER TU NÚMERO ACÁ
 
 let step = 0;
 
@@ -283,7 +324,7 @@ function finalScreen() {
   render(`
     <div style="font-size: 36px; margin-bottom: 5px;">🌌</div>
     <h2>¡Todo listo!</h2>
-    <div style="text-align:left;background:#261f33;border:1px solid #48384f;padding:14px;border-radius:14px;line-height:1.6;font-size:13px; margin-top: 15px; color:#f4e6ec;">
+    <div style="text-align:left;background:#21192e;border:1px solid #48384f;padding:14px;border-radius:14px;line-height:1.6;font-size:13px; margin-top: 15px; color:#f4e6ec;">
       🍽️ Cena: <b>${answers.dinner}</b><br>
       🍰 Postre: <b>${answers.dessert}</b><br>
       🎬 Película: <b>${answers.movie}</b><br>
