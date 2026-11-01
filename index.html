@@ -8,51 +8,53 @@
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;1,500&display=swap');
 
 :root {
-  --pink:#e8aab9;
-  --dark:#824c5c;
-  --cream:#fff8f0;
-  --light:#f9e9e9;
+  --pink:#d19fae;
+  --dark:#e2c4d0;
+  --cream:#f3ebf5;
+  --light:#1a1528;
 }
 * { box-sizing:border-box; }
 body {
   margin:0;
   min-height:100vh;
-  background:linear-gradient(145deg,#f9e9e9,#fff8f0,#f6dce3);
-  color:#60434a;
+  /* Fondo nocturno sutil, estrellado y acogedor tipo espacio/cielo */
+  background: radial-gradient(circle at 20% 20%, #292238 0%, #151121 60%, #0d0a14 100%);
+  color:#f0e6ec;
   font-family:'DM Sans',sans-serif;
   display:flex;
   justify-content:center;
   align-items:center;
   padding:20px;
-  /* Pequeños iconos decorativos de fondo */
+  /* Estrellitas sutiles de fondo */
   background-image: 
-    radial-gradient(#e8aab9 15%, transparent 16%),
-    radial-gradient(#e8aab9 15%, transparent 16%);
-  background-size: 60px 60px;
-  background-position: 0 0, 30px 30px;
-  background-color: #fff8f0;
+    radial-gradient(white 1px, transparent 1px),
+    radial-gradient(rgba(255,255,255,0.6) 1px, transparent 1px),
+    radial-gradient(rgba(215,185,210,0.4) 1.5px, transparent 1.5px);
+  background-size: 50px 50px, 80px 80px, 120px 120px;
+  background-position: 0 0, 20px 40px, 40px 10px;
 }
 .card {
   width:100%;
   max-width:420px;
-  background:rgba(255,255,255,.96);
-  border:1px solid white;
+  background:rgba(30, 25, 44, 0.88);
+  border:1px solid rgba(232, 170, 185, 0.25);
   border-radius:28px;
   padding:30px 22px;
   text-align:center;
-  box-shadow:0 15px 50px #a66b7720;
+  box-shadow:0 20px 50px rgba(0,0,0,0.5);
   animation:appear .55s ease;
   position: relative;
   overflow: hidden;
+  backdrop-filter: blur(10px);
 }
 @keyframes appear {
   from {opacity:0;transform:translateY(18px)}
   to {opacity:1;transform:translateY(0)}
 }
-h1,h2 {font-family:'Playfair Display',serif;color:var(--dark);margin: 10px 0;}
+h1,h2 {font-family:'Playfair Display',serif;color:#fce4ec;margin: 10px 0;}
 h1 {font-size:28px;line-height:1.2}
 h2 {font-size:24px}
-p {line-height:1.5;font-size:14px;margin: 10px 0;}
+p {line-height:1.5;font-size:14px;color:#d5c2cc;margin: 10px 0;}
 .buttons {display:flex;gap:12px;margin-top:20px}
 button {
   font-family:inherit;
@@ -65,11 +67,11 @@ button {
   transition:.2s;
 }
 button:active {transform:scale(.97)}
-.primary {background:var(--dark);color:white;flex:1}
-.secondary {background:#f5e5e8;color:var(--dark);flex:1}
+.primary {background:#824c5c;color:#fff8f0;flex:1;box-shadow:0 4px 15px rgba(130,76,92,0.4)}
+.secondary {background:#3b2d38;color:#e8aab9;flex:1;border:1px solid #574250}
 .full {width:100%;margin-top:16px}
 
-/* Opciones elegantes solo texto con iconos */
+/* Opciones elegantes estilo nocturno */
 .options-stack {
   display:flex;
   flex-direction:column;
@@ -78,9 +80,9 @@ button:active {transform:scale(.97)}
 }
 .option-btn {
   width:100%;
-  background:#fffafa;
-  border:2px solid #f1dce1;
-  color:var(--dark);
+  background:#261f33;
+  border:2px solid #48384f;
+  color:#f4e6ec;
   text-align:left;
   padding: 16px 20px;
   border-radius:16px;
@@ -95,44 +97,45 @@ button:active {transform:scale(.97)}
   font-size: 18px;
 }
 .option-btn.selected {
-  border-color:#a65d75;
-  background:#fceaf0;
-  box-shadow:0 0 0 3px #e8aab933;
+  border-color:#b87d92;
+  background:#472d38;
+  box-shadow:0 0 0 3px rgba(232,170,185,0.2);
   transform: translateX(4px);
 }
 
 textarea {
   width:100%;
-  border:1px solid #e8cbd3;
-  background:#fffafa;
+  border:1px solid #574250;
+  background:#261f33;
   border-radius:14px;
   padding:14px;
   font-family:inherit;
-  color:#60434a;
+  color:#f4e6ec;
   font-size:14px;
   margin-top:12px;
   outline:none;
   resize:vertical;
   min-height:80px;
 }
+textarea::placeholder { color: #8c7682; }
+
 .progress {
   height:6px;
-  background:#f3e4e7;
+  background:#3b2d38;
   border-radius:10px;
   margin-bottom:20px;
   overflow:hidden;
 }
-.bar {height:100%;background:#bc7b8e;transition:.4s}
-.note {font-size:12px;color:#a77e87;margin-top:18px}
+.bar {height:100%;background:#b87d92;transition:.4s}
+.note {font-size:12px;color:#9e8290;margin-top:18px}
 </style>
 </head>
 <body>
 
 <main class="card" id="app">
-  <div style="font-size: 40px; margin-bottom: 10px;">💌</div>
+  <div style="font-size: 36px; margin-bottom: 10px;">🌙✨</div>
   <h1>¿Tenemos una dateeee?</h1>
-  <p>Prepárate para una noche especial pensada solo para nosotros.</p>
-  <div class="buttons">
+  <div class="buttons" style="margin-top: 25px;">
     <button class="primary" onclick="next()">ACEPTAR</button>
     <button class="secondary" onclick="reject()">RECHAZAR</button>
   </div>
@@ -166,9 +169,9 @@ function progress(n) {
 
 function reject() {
   render(`
-    <div style="font-size: 40px; margin-bottom: 10px;">🥺</div>
+    <div style="font-size: 36px; margin-bottom: 10px;">🪐</div>
     <h2>¿Segurísimo?</h2>
-    <p>Prometo buena comida y linda compañía... pero si no querés, todo bien. ♡</p>
+    <p>Prometo buena comida y linda compañía bajo las estrellas... pero si no querés, todo bien. ♡</p>
     <button class="primary full" onclick="next()">Bueno, ¡acepto! 💗</button>
     <button class="secondary full" onclick="decline()">No, gracias</button>
   `);
@@ -191,7 +194,6 @@ function dinner() {
   render(`
     ${progress(1)}
     <h2>¿Qué cenamos?</h2>
-    <p style="font-size: 13px; color: #a77e87;">Elegí tu opción favorita</p>
     <div class="options-stack">
       ${textOption('Tallarines caseros con salsita', 'dinner', '🍝')}
       ${textOption('Tarta de jamón y queso', 'dinner', '🥧')}
@@ -205,8 +207,7 @@ function dessert() {
   step = 2;
   render(`
     ${progress(2)}
-    <h2>¿Y de postre?</h2>
-    <p style="font-size: 13px; color: #a77e87;">Para endulzar un poco</p>
+    <h2>Obviamente también habrá postre</h2>
     <div class="options-stack">
       ${textOption('Tiramisú (ponele)', 'dessert', '🍰')}
       ${textOption('Heladito', 'dessert', '🍨')}
@@ -221,10 +222,9 @@ function movie() {
   render(`
     ${progress(3)}
     <h2>¿Qué peli vemos?</h2>
-    <p style="font-size: 13px; color: #a77e87;">Ponete cómodo</p>
     <div class="options-stack">
       ${textOption('Destino Oculto', 'movie', '🎬')}
-      ${textOption('Paulie', 'movie', '🦜')}
+      ${textOption('Cásate con mi esposo', 'movie', '💫')}
     </div>
     <button class="primary full" onclick="suggestions()">Continuar ♡</button>
   `);
@@ -238,12 +238,6 @@ function textOption(name, key, icon) {
       <span class="icon">${icon}</span>
     </button>
   `;
-}
-
-function choose(key, value, element) {
-  answers[key] = value;
-  element.parentElement.querySelectorAll(".option-btn").forEach(x => x.classList.remove("selected"));
-  element.classList.add("selected");
 }
 
 function suggestions() {
@@ -266,7 +260,6 @@ function dates() {
   render(`
     ${progress(5)}
     <h2>Elegí la fecha</h2>
-    <p style="font-size: 13px; color: #a77e87;">¿Cuándo nos juntamos?</p>
     <div class="options-stack">
       ${textOption('Sábado 07/11', 'date', '✨')}
       ${textOption('Domingo 08/11', 'date', '✨')}
@@ -276,7 +269,6 @@ function dates() {
   `);
 }
 
-// Sobrescribimos temporalmente el choose para las fechas en este formato de lista
 function choose(key, value, element) {
   answers[key] = value;
   element.parentElement.querySelectorAll(".option-btn").forEach(x => x.classList.remove("selected"));
@@ -289,9 +281,9 @@ function choose(key, value, element) {
 
 function finalScreen() {
   render(`
-    <div style="font-size: 40px; margin-bottom: 5px;">🎉</div>
+    <div style="font-size: 36px; margin-bottom: 5px;">🌌</div>
     <h2>¡Todo listo!</h2>
-    <div style="text-align:left;background:#fff3f5;padding:14px;border-radius:14px;line-height:1.6;font-size:13px; margin-top: 15px;">
+    <div style="text-align:left;background:#261f33;border:1px solid #48384f;padding:14px;border-radius:14px;line-height:1.6;font-size:13px; margin-top: 15px; color:#f4e6ec;">
       🍽️ Cena: <b>${answers.dinner}</b><br>
       🍰 Postre: <b>${answers.dessert}</b><br>
       🎬 Película: <b>${answers.movie}</b><br>
