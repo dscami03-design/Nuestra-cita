@@ -28,8 +28,7 @@ body {
 .card {
   width:100%;
   max-width:440px;
-  min-height:570px;
-  background:rgba(255,255,255,.9);
+  background:rgba(255,255,255,.95);
   border:1px solid white;
   border-radius:28px;
   padding:25px 20px;
@@ -43,15 +42,15 @@ body {
 }
 .screen-img {
   width: 100%;
-  max-height: 220px;
-  object-fit: contain;
+  max-height: 200px;
+  object-fit: cover;
   border-radius: 14px;
-  margin-bottom: 12px;
+  margin-bottom: 10px;
   box-shadow: 0 4px 12px rgba(0,0,0,0.08);
 }
 h1,h2 {font-family:'Playfair Display',serif;color:var(--dark);margin: 8px 0;}
-h1 {font-size:28px;line-height:1.2}
-h2 {font-size:24px}
+h1 {font-size:26px;line-height:1.2}
+h2 {font-size:22px}
 p {line-height:1.5;font-size:14px;margin: 8px 0;}
 .buttons {display:flex;gap:12px;margin-top:20px}
 button {
@@ -68,27 +67,44 @@ button:active {transform:scale(.96)}
 .primary {background:var(--dark);color:white;flex:1}
 .secondary {background:#f5e5e8;color:var(--dark);flex:1}
 .full {width:100%;margin-top:14px}
-.options {
+
+/* Tarjetas interactivas con imágenes grandes */
+.options-grid {
   display:grid;
   grid-template-columns:1fr 1fr;
-  gap:10px;
+  gap:12px;
   margin-top:15px;
 }
-.option {
+.image-card {
   background:#fffafa;
   border:2px solid #f1dce1;
-  border-radius:16px;
-  padding:12px 8px;
-  color:var(--dark);
-  font-weight:600;
-  font-size:13px;
+  border-radius:18px;
+  padding:8px;
+  cursor:pointer;
+  transition:.2s;
   text-align:center;
 }
-.option.selected {
+.image-card img {
+  width:100%;
+  height:120px;
+  object-fit:cover;
+  border-radius:12px;
+  margin-bottom:6px;
+}
+.image-card span {
+  font-size:12px;
+  font-weight:600;
+  color:var(--dark);
+  display:block;
+  padding: 4px 0;
+}
+.image-card.selected {
   border-color:#a65d75;
   background:#fceaf0;
   box-shadow:0 0 0 3px #e8aab933;
+  transform:scale(1.02);
 }
+
 textarea {
   width:100%;
   border:1px solid #e8cbd3;
@@ -101,7 +117,7 @@ textarea {
   margin-top:10px;
   outline:none;
   resize:vertical;
-  min-height:80px;
+  min-height:70px;
 }
 .progress {
   height:5px;
@@ -112,17 +128,24 @@ textarea {
 }
 .bar {height:100%;background:#bc7b8e;transition:.4s}
 .note {font-size:11px;color:#a77e87;margin-top:15px}
+
+.date-grid {
+  display:flex;
+  flex-direction:column;
+  gap:8px;
+  margin-top:15px;
+}
 .date-option {
-  display:block;
   width:100%;
-  margin:8px 0;
   background:#fffafa;
   border:2px solid #f1dce1;
   color:var(--dark);
-  text-align: left;
+  text-align:center;
   padding: 12px 16px;
+  border-radius:14px;
+  font-weight:600;
 }
-.date-option.selected {border-color:#a65d75;background:#fceaf0}
+.date-option.selected {border-color:#a65d75;background:#fceaf0;box-shadow:0 0 0 3px #e8aab933;}
 </style>
 </head>
 <body>
@@ -146,8 +169,7 @@ const answers = {
   date:""
 };
 
-// ACORDATE DE CAMBIAR ESTO POR TU NÚMERO DE WHATSAPP (Ej: 549351XXXXXXXX)
-const whatsappNumber = "5493751358569";
+const whatsappNumber = "5493751358569"; // ACORDATE DE PONER TU NÚMERO ACA
 
 let step = 0;
 
@@ -189,14 +211,12 @@ function next() {
 function dinner() {
   render(`
     ${progress(1)}
-    <img src="img/cena.jpg" class="screen-img" alt="Cena">
     <h2>Elegí qué vamos a cenar</h2>
-    <div class="options">
-      ${option("Tallarines caseros con salsita", "dinner")}
-      ${option("Tarta de jamón y queso", "dinner")}
+    <div class="options-grid">
+      ${imageOption('Tallarines caseros', 'img/cena.jpg', 'dinner')}
+      ${imageOption('Tarta de jamón y queso', 'img/cena.jpg', 'dinner')}
     </div>
     <button class="primary full" onclick="dessert()">Continuar ♡</button>
-    <div class="note">Las imágenes son meramente ilustrativas, gracias por su atención ahre</div>
   `);
 }
 
@@ -205,11 +225,10 @@ function dessert() {
   step = 2;
   render(`
     ${progress(2)}
-    <img src="img/postre.jpg" class="screen-img" alt="Postre">
-    <h2>Obviamente también hay postre...</h2>
-    <div class="options">
-      ${option("Tiramisú (ponele)", "dessert")}
-      ${option("Heladito", "dessert")}
+    <h2>Obviamente hay postre...</h2>
+    <div class="options-grid">
+      ${imageOption('Tiramisú', 'img/postre.jpg', 'dessert')}
+      ${imageOption('Heladito', 'img/postre.jpg', 'dessert')}
     </div>
     <button class="primary full" onclick="movie()">Siguiente ♡</button>
   `);
@@ -220,26 +239,28 @@ function movie() {
   step = 3;
   render(`
     ${progress(3)}
-    <img src="img/pelicula.jpg" class="screen-img" alt="Película">
-    <h2>Y mientras podemos verrr....</h2>
-    <div class="options">
-      ${option("Destino Oculto", "movie")}
-      ${option("Paulie", "movie")}
+    <h2>Y mientras vemos...</h2>
+    <div class="options-grid">
+      ${imageOption('Destino Oculto', 'img/pelicula.jpg', 'movie')}
+      ${imageOption('Paulie', 'img/pelicula.jpg', 'movie')}
     </div>
     <button class="primary full" onclick="suggestions()">Continuar ♡</button>
   `);
 }
 
-function option(name, key) {
+function imageOption(name, imgPath, key) {
   const selected = answers[key] === name ? "selected" : "";
-  return `<button class="option ${selected}" onclick="choose('${key}','${name}',this)">
-    ${name}
-  </button>`;
+  return `
+    <div class="image-card ${selected}" onclick="choose('${key}','${name}',this)">
+      <img src="${imgPath}" alt="${name}">
+      <span>${name}</span>
+    </div>
+  `;
 }
 
 function choose(key, value, element) {
   answers[key] = value;
-  element.parentElement.querySelectorAll(".option").forEach(x => x.classList.remove("selected"));
+  element.parentElement.querySelectorAll(".image-card").forEach(x => x.classList.remove("selected"));
   element.classList.add("selected");
 }
 
@@ -263,19 +284,20 @@ function dates() {
   step = 5;
   render(`
     ${progress(5)}
-    <img src="img/fechas.jpg" class="screen-img" alt="Fechas">
     <h2>Elegí la fecha</h2>
-    <button class="date-option" onclick="chooseDate('Sábado 07/11')">♡ Sábado 07/11</button>
-    <button class="date-option" onclick="chooseDate('Domingo 08/11')">♡ Domingo 08/11</button>
-    <button class="date-option" onclick="chooseDate('Sábado 14/11')">♡ Sábado 14/11</button>
-    <div class="note">Se aceptan sugerencias en la cajita correspondiente</div>
+    <div class="date-grid">
+      <button class="date-option ${answers.date === 'Sábado 07/11' ? 'selected' : ''}" onclick="chooseDate('Sábado 07/11', this)">♡ Sábado 07/11</button>
+      <button class="date-option ${answers.date === 'Domingo 08/11' ? 'selected' : ''}" onclick="chooseDate('Domingo 08/11', this)">♡ Domingo 08/11</button>
+      <button class="date-option ${answers.date === 'Sábado 14/11' ? 'selected' : ''}" onclick="chooseDate('Sábado 14/11', this)">♡ Sábado 14/11</button>
+    </div>
+    <div class="note">Se aceptan sugerencias en la cajita anterior</div>
   `);
 }
 
-function chooseDate(value) {
+function chooseDate(value, element) {
   answers.date = value;
   document.querySelectorAll(".date-option").forEach(x => x.classList.remove("selected"));
-  event.currentTarget.classList.add("selected");
+  element.classList.add("selected");
 
   setTimeout(finalScreen, 350);
 }
