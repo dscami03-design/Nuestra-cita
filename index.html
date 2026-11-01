@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -30,10 +29,10 @@ body {
   width:100%;
   max-width:440px;
   min-height:570px;
-  background:rgba(255,255,255,.82);
+  background:rgba(255,255,255,.9);
   border:1px solid white;
   border-radius:28px;
-  padding:30px 23px;
+  padding:25px 20px;
   text-align:center;
   box-shadow:0 15px 50px #a66b7720;
   animation:appear .55s ease;
@@ -42,19 +41,25 @@ body {
   from {opacity:0;transform:translateY(18px)}
   to {opacity:1;transform:translateY(0)}
 }
-.heart {font-size:42px;margin:8px 0 15px}
-h1,h2 {font-family:'Playfair Display',serif;color:var(--dark)}
-h1 {font-size:35px;line-height:1.2}
-h2 {font-size:28px}
-p {line-height:1.65;font-size:15px}
-.small {font-size:12px;letter-spacing:2px;text-transform:uppercase;color:#b27a88}
-.buttons {display:flex;gap:12px;margin-top:28px}
+.screen-img {
+  width: 100%;
+  max-height: 220px;
+  object-fit: contain;
+  border-radius: 14px;
+  margin-bottom: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+h1,h2 {font-family:'Playfair Display',serif;color:var(--dark);margin: 8px 0;}
+h1 {font-size:28px;line-height:1.2}
+h2 {font-size:24px}
+p {line-height:1.5;font-size:14px;margin: 8px 0;}
+.buttons {display:flex;gap:12px;margin-top:20px}
 button {
   font-family:inherit;
   cursor:pointer;
   border:0;
   border-radius:15px;
-  padding:14px 18px;
+  padding:12px 16px;
   font-size:14px;
   font-weight:600;
   transition:.2s;
@@ -62,76 +67,73 @@ button {
 button:active {transform:scale(.96)}
 .primary {background:var(--dark);color:white;flex:1}
 .secondary {background:#f5e5e8;color:var(--dark);flex:1}
-.full {width:100%;margin-top:18px}
+.full {width:100%;margin-top:14px}
 .options {
   display:grid;
   grid-template-columns:1fr 1fr;
-  gap:12px;
-  margin-top:22px;
+  gap:10px;
+  margin-top:15px;
 }
 .option {
   background:#fffafa;
   border:2px solid #f1dce1;
-  border-radius:18px;
-  padding:13px 8px;
+  border-radius:16px;
+  padding:12px 8px;
   color:var(--dark);
   font-weight:600;
-  font-size:14px;
+  font-size:13px;
+  text-align:center;
 }
 .option.selected {
   border-color:#a65d75;
   background:#fceaf0;
   box-shadow:0 0 0 3px #e8aab933;
 }
-.emoji {font-size:43px;display:block;margin-bottom:9px}
-input,textarea {
+textarea {
   width:100%;
   border:1px solid #e8cbd3;
   background:#fffafa;
   border-radius:14px;
-  padding:14px;
+  padding:12px;
   font-family:inherit;
   color:#60434a;
   font-size:14px;
-  margin-top:12px;
+  margin-top:10px;
   outline:none;
+  resize:vertical;
+  min-height:80px;
 }
-textarea {resize:vertical;min-height:105px}
 .progress {
   height:5px;
   background:#f3e4e7;
   border-radius:10px;
-  margin-bottom:25px;
+  margin-bottom:15px;
   overflow:hidden;
 }
 .bar {height:100%;background:#bc7b8e;transition:.4s}
-.note {font-size:12px;color:#a77e87;margin-top:24px}
+.note {font-size:11px;color:#a77e87;margin-top:15px}
 .date-option {
   display:block;
   width:100%;
-  margin:10px 0;
+  margin:8px 0;
   background:#fffafa;
   border:2px solid #f1dce1;
   color:var(--dark);
+  text-align: left;
+  padding: 12px 16px;
 }
 .date-option.selected {border-color:#a65d75;background:#fceaf0}
-#message {font-size:13px;color:#a65d75;min-height:20px}
 </style>
 </head>
 <body>
 
 <main class="card" id="app">
-  <div class="heart">💌</div>
-  <div class="small">Una invitación especial</div>
-  <h1>¿Tenemos una cita?</h1>
-  <p>Tengo una propuesta para vos...</p>
-  <p>Una noche, buena comida, algo rico de postre y una película. ¿Qué decís?</p>
-  <p><b>Tu presencia es el ingrediente principal. ♡</b></p>
+  <img src="img/portada.jpg" class="screen-img" alt="Portada">
+  <h1>¿Tenemos una dateeee?</h1>
   <div class="buttons">
-    <button class="primary" onclick="next()">¡Acepto! ♡</button>
-    <button class="secondary" onclick="reject()">Rechazar</button>
+    <button class="primary" onclick="next()">ACEPTAR</button>
+    <button class="secondary" onclick="reject()">RECHAZAR</button>
   </div>
-  <div id="message"></div>
   <div class="note">Hecho con un poquito de amor ♡</div>
 </main>
 
@@ -144,9 +146,8 @@ const answers = {
   date:""
 };
 
-// IMPORTANTE: reemplazar por tu número con código de país.
-// Argentina: 549 + código de área + número, sin + ni espacios.
-const whatsappNumber = "549TU_NUMERO";
+// ACORDATE DE CAMBIAR ESTO POR TU NÚMERO DE WHATSAPP (Ej: 549351XXXXXXXX)
+const whatsappNumber = "5493751358569";
 
 let step = 0;
 
@@ -159,14 +160,14 @@ function render(content) {
 }
 
 function progress(n) {
-  return `<div class="progress"><div class="bar" style="width:${n/6*100}%"></div></div>`;
+  return `<div class="progress"><div class="bar" style="width:${n/5*100}%"></div></div>`;
 }
 
 function reject() {
   render(`
-    <div class="heart">🥺</div>
+    <img src="img/portada.jpg" class="screen-img" alt="Portada">
     <h2>¿Segurísimo?</h2>
-    <p>Prometo buena comida, postre y una noche linda... pero si no querés, está bien también. ♡</p>
+    <p>Prometo buena comida y linda compañía... pero si no querés, todo bien. ♡</p>
     <button class="primary full" onclick="next()">Bueno, ¡acepto! 💗</button>
     <button class="secondary full" onclick="decline()">No, gracias</button>
   `);
@@ -174,7 +175,6 @@ function reject() {
 
 function decline() {
   render(`
-    <div class="heart">💗</div>
     <h2>¡Gracias por responder!</h2>
     <p>No pasa nada. La invitación queda hecha sin presiones. ♡</p>
     <button class="secondary full" onclick="location.reload()">Volver al inicio</button>
@@ -189,31 +189,27 @@ function next() {
 function dinner() {
   render(`
     ${progress(1)}
-    <div class="heart">🍝</div>
-    <div class="small">Primera elección</div>
-    <h2>¿Qué vamos a cenar?</h2>
-    <p>Elegí tu favorito. ¡Yo me encargo del resto!</p>
+    <img src="img/cena.jpg" class="screen-img" alt="Cena">
+    <h2>Elegí qué vamos a cenar</h2>
     <div class="options">
-      ${option("Pasta","🍝","dinner")}
-      ${option("Pizza","🍕","dinner")}
+      ${option("Tallarines caseros con salsita", "dinner")}
+      ${option("Tarta de jamón y queso", "dinner")}
     </div>
     <button class="primary full" onclick="dessert()">Continuar ♡</button>
-    <div class="note">Una decisión muy importante, claramente.</div>
+    <div class="note">Las imágenes son meramente ilustrativas, gracias por su atención ahre</div>
   `);
 }
 
 function dessert() {
   if(!answers.dinner) return alert("¡Elegí primero la cena! ♡");
-  step=2;
+  step = 2;
   render(`
     ${progress(2)}
-    <div class="heart">🍓</div>
-    <div class="small">Segunda elección</div>
-    <h2>¿Y algo dulce?</h2>
-    <p>Porque el postre nunca puede faltar.</p>
+    <img src="img/postre.jpg" class="screen-img" alt="Postre">
+    <h2>Obviamente también hay postre...</h2>
     <div class="options">
-      ${option("Brownie","🍫","dessert")}
-      ${option("Cheesecake","🍰","dessert")}
+      ${option("Tiramisú (ponele)", "dessert")}
+      ${option("Heladito", "dessert")}
     </div>
     <button class="primary full" onclick="movie()">Siguiente ♡</button>
   `);
@@ -221,89 +217,83 @@ function dessert() {
 
 function movie() {
   if(!answers.dessert) return alert("¡Falta elegir el postre! ♡");
-  step=3;
+  step = 3;
   render(`
     ${progress(3)}
-    <div class="heart">🎬</div>
-    <div class="small">Tercera elección</div>
-    <h2>Plan de película</h2>
-    <p>¿Qué ambiente le damos a nuestra noche?</p>
+    <img src="img/pelicula.jpg" class="screen-img" alt="Película">
+    <h2>Y mientras podemos verrr....</h2>
     <div class="options">
-      ${option("Comedia romántica","💕","movie")}
-      ${option("Suspenso","🍿","movie")}
+      ${option("Destino Oculto", "movie")}
+      ${option("Paulie", "movie")}
     </div>
     <button class="primary full" onclick="suggestions()">Continuar ♡</button>
   `);
 }
 
-function option(name,emoji,key) {
-  const selected=answers[key]===name?"selected":"";
+function option(name, key) {
+  const selected = answers[key] === name ? "selected" : "";
   return `<button class="option ${selected}" onclick="choose('${key}','${name}',this)">
-    <span class="emoji">${emoji}</span>${name}
+    ${name}
   </button>`;
 }
 
-function choose(key,value,element) {
-  answers[key]=value;
-  element.parentElement.querySelectorAll(".option").forEach(x=>x.classList.remove("selected"));
+function choose(key, value, element) {
+  answers[key] = value;
+  element.parentElement.querySelectorAll(".option").forEach(x => x.classList.remove("selected"));
   element.classList.add("selected");
 }
 
 function suggestions() {
   if(!answers.movie) return alert("¡Elegí una película! ♡");
-  step=4;
+  step = 4;
   render(`
     ${progress(4)}
-    <div class="heart">🎶</div>
-    <div class="small">Un espacio para vos</div>
-    <h2>¿Alguna sugerencia?</h2>
-    <p>Una canción que quieras escuchar, algo que quieras comer o cualquier detalle que se te ocurra...</p>
-    <textarea id="music" placeholder="Acá podés escribir lo que quieras..."></textarea>
+    <img src="img/pelicula.jpg" class="screen-img" alt="Sugerencias">
+    <h2>Cajita de sugerencias</h2>
+    <p>Una canción, un detalle o lo que quieras acotar:</p>
+    <textarea id="music" placeholder="Escribí tus sugerencias acá..."></textarea>
     <button class="primary full" onclick="dates()">¡Tengo una idea! ♡</button>
   `);
 }
 
 function dates() {
-  answers.music=document.getElementById("music").value;
-  step=5;
+  const musicEl = document.getElementById("music");
+  if(musicEl) answers.music = musicEl.value;
+  
+  step = 5;
   render(`
     ${progress(5)}
-    <div class="heart">📅</div>
-    <div class="small">Última decisión importante</div>
-    <h2>¿Cuándo nos vemos?</h2>
-    <p>Elegí la fecha que más te guste.</p>
-    <button class="date-option" onclick="chooseDate('Viernes')">♡ Viernes</button>
-    <button class="date-option" onclick="chooseDate('Sábado')">♡ Sábado</button>
-    <button class="date-option" onclick="chooseDate('Domingo')">♡ Domingo</button>
-    <div class="note">La fecha exacta la definimos juntos.</div>
+    <img src="img/fechas.jpg" class="screen-img" alt="Fechas">
+    <h2>Elegí la fecha</h2>
+    <button class="date-option" onclick="chooseDate('Sábado 07/11')">♡ Sábado 07/11</button>
+    <button class="date-option" onclick="chooseDate('Domingo 08/11')">♡ Domingo 08/11</button>
+    <button class="date-option" onclick="chooseDate('Sábado 14/11')">♡ Sábado 14/11</button>
+    <div class="note">Se aceptan sugerencias en la cajita correspondiente</div>
   `);
 }
 
 function chooseDate(value) {
-  answers.date=value;
-  document.querySelectorAll(".date-option").forEach(x=>x.classList.remove("selected"));
+  answers.date = value;
+  document.querySelectorAll(".date-option").forEach(x => x.classList.remove("selected"));
   event.currentTarget.classList.add("selected");
 
-  setTimeout(finalScreen,350);
+  setTimeout(finalScreen, 350);
 }
 
 function finalScreen() {
   render(`
-    <div class="heart">💗</div>
-    <div class="small">Nuestra pequeña cita</div>
-    <h1>¡Tenemos un plan!</h1>
-    <p>Este es nuestro pequeño menú de la noche:</p>
-    <div style="text-align:left;background:#fff3f5;padding:17px;border-radius:17px;line-height:2">
+    <img src="img/confirmacion.jpg" class="screen-img" alt="Confirmación">
+    <h2>¡Todo listo!</h2>
+    <div style="text-align:left;background:#fff3f5;padding:12px;border-radius:14px;line-height:1.6;font-size:13px;">
       🍽️ Cena: <b>${answers.dinner}</b><br>
       🍰 Postre: <b>${answers.dessert}</b><br>
       🎬 Película: <b>${answers.movie}</b><br>
-      📅 Día elegido: <b>${answers.date}</b><br>
-      🎵 Sugerencia: ${answers.music ? escapeHTML(answers.music) : "Ninguna"}
+      📅 Fecha: <b>${answers.date}</b><br>
+      🎵 Sugerencia: ${answers.music ? escapeHTML(answers.music) : "Ninguna"}<br><br>
+      ⏰ <b>Llegada:</b> 21:00 – 22:00 PUNTUAL<br>
+      <i>(si no, llegar con vino en mano 🍷)</i>
     </div>
-    <h2>¡Ahora solo falta que llegue el día! 🥹</h2>
-    <p>Gracias por aceptar esta pequeña aventura conmigo. ♡</p>
-    <button class="primary full" onclick="sendWhatsApp()">Enviar mis elecciones 💌</button>
-    <div class="note">La mejor parte todavía está por venir.</div>
+    <button class="primary full" onclick="sendWhatsApp()">CONFIRMAR ASISTENCIA 💌</button>
   `);
 }
 
@@ -314,12 +304,12 @@ function escapeHTML(text) {
 }
 
 function sendWhatsApp() {
-  const text = `¡Mis elecciones para nuestra cita! 💗
+  const text = `¡Mis elecciones para nuestra date! 💗
 
 Cena: ${answers.dinner}
 Postre: ${answers.dessert}
 Película: ${answers.movie}
-Día elegido: ${answers.date}
+Fecha: ${answers.date}
 Sugerencias: ${answers.music || "Ninguna"}
 
 ¡Nos vemos! ♡`;
@@ -327,13 +317,12 @@ Sugerencias: ${answers.music || "Ninguna"}
   const url = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(text)}`;
 
   if(whatsappNumber.includes("TU_NUMERO")) {
-    alert("Todavía falta configurar el número de WhatsApp de quien recibirá las respuestas. ¡Lo hacemos juntas!");
+    alert("Cami, acordate de cambiar 'TU_NUMERO' en el código por tu número de WhatsApp real con código de país.");
     return;
   }
 
-  window.open(url,"_blank");
+  window.open(url, "_blank");
 }
 </script>
 </body>
-  </html>
-  
+</html>
