@@ -1,183 +1,357 @@
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#101b30">
 <title>Una cita especial ♡</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600;700&family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;1,500&display=swap" rel="stylesheet">
+
 <style>
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;1,500&display=swap');
+* { box-sizing: border-box; }
 
-* { box-sizing:border-box; }
-
-html, body {
-  margin: 0;
-  padding: 0;
-  width: 100%;
-  min-height: 100vh;
-  background-color: #0d0a14;
+:root {
+  --night: #101b30;
+  --card: rgba(24, 37, 59, .91);
+  --cream: #f5eee5;
+  --muted: #c4cbd8;
+  --pink: #d9a9b8;
+  --border: rgba(211, 199, 221, .19);
 }
 
+html { min-height: 100%; }
+
 body {
-  /* Fondo nocturno espacial inmersivo */
-  background: radial-gradient(circle at 50% 30%, #251c33 0%, #130f1c 65%, #08060d 100%);
-  color: #f0e6ec;
-  font-family: 'DM Sans', sans-serif;
+  margin: 0;
+  min-height: 100vh;
+  padding: 24px 15px;
   display: flex;
-  justify-content: center;
   align-items: center;
-  padding: 20px;
-  /* Estrellitas sutiles repartidas por toda la pantalla */
-  background-image: 
-    radial-gradient(rgba(255,255,255,0.8) 1px, transparent 1px),
-    radial-gradient(rgba(232,170,185,0.5) 1.2px, transparent 1.2px),
-    radial-gradient(rgba(255,255,255,0.4) 1.5px, transparent 1.5px);
-  background-size: 60px 60px, 90px 90px, 140px 140px;
-  background-position: 0 0, 30px 45px, 20px 70px;
+  justify-content: center;
+  color: var(--cream);
+  font-family: 'DM Sans', sans-serif;
+  background:
+    radial-gradient(ellipse at 15% 15%, rgba(88,112,151,.23), transparent 45%),
+    radial-gradient(ellipse at 85% 75%, rgba(137,108,148,.14), transparent 42%),
+    linear-gradient(145deg, #17243b, #0d1526 72%, #111827);
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* Estrellas pequeñas y discretas */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  opacity: .62;
+  background-image:
+    radial-gradient(1px 1px at 12% 18%, #fff 99%, transparent),
+    radial-gradient(1.5px 1.5px at 82% 12%, #e8d7e9 99%, transparent),
+    radial-gradient(1px 1px at 70% 36%, #fff 99%, transparent),
+    radial-gradient(1px 1px at 24% 65%, #c9d7f0 99%, transparent),
+    radial-gradient(1.5px 1.5px at 91% 72%, #fff 99%, transparent),
+    radial-gradient(1px 1px at 44% 88%, #e8d7e9 99%, transparent),
+    radial-gradient(1px 1px at 54% 9%, #fff 99%, transparent),
+    radial-gradient(1px 1px at 7% 84%, #fff 99%, transparent);
+  z-index: 0;
+}
+
+body::after {
+  content: "✦";
+  position: fixed;
+  top: 8%;
+  right: 10%;
+  font-size: 16px;
+  color: #d9c8e6;
+  opacity: .65;
+  pointer-events: none;
 }
 
 .card {
   width: 100%;
   max-width: 420px;
-  background: rgba(26, 21, 36, 0.92);
-  border: 1px solid rgba(232, 170, 185, 0.25);
-  border-radius: 28px;
-  padding: 30px 22px;
+  padding: 30px 23px 25px;
   text-align: center;
-  box-shadow: 0 20px 50px rgba(0,0,0,0.7);
-  animation: appear .55s ease;
   position: relative;
+  z-index: 1;
   overflow: hidden;
+  border: 1px solid var(--border);
+  border-radius: 26px;
+  background: var(--card);
+  box-shadow: 0 20px 65px rgba(0,0,0,.28);
   backdrop-filter: blur(12px);
+  animation: appear .5s ease both;
+}
+
+.card::before {
+  content: "";
+  position: absolute;
+  top: -90px;
+  right: -70px;
+  width: 190px;
+  height: 190px;
+  border-radius: 50%;
+  background: rgba(147,165,205,.045);
+  pointer-events: none;
 }
 
 @keyframes appear {
-  from { opacity: 0; transform: translateY(18px); }
+  from { opacity: 0; transform: translateY(12px); }
   to { opacity: 1; transform: translateY(0); }
 }
 
-h1, h2 {
-  font-family: 'Playfair Display', serif;
-  color: #fce4ec;
-  margin: 10px 0;
+.moon {
+  width: 43px;
+  height: 43px;
+  margin: 0 auto 9px;
+  border-radius: 50%;
+  background: #f1e7cf;
+  box-shadow: 0 0 24px rgba(241,231,207,.13);
+  position: relative;
 }
-h1 { font-size: 28px; line-height: 1.2; }
-h2 { font-size: 24px; }
-p { line-height: 1.5; font-size: 14px; color: #d5c2cc; margin: 10px 0; }
 
-.buttons {
-  display: flex;
-  gap: 12px;
-  margin-top: 20px;
+.moon::after {
+  content: "";
+  position: absolute;
+  width: 39px;
+  height: 39px;
+  top: -5px;
+  left: 12px;
+  border-radius: 50%;
+  background: #1a2a42;
+}
+
+h1, h2 {
+  margin: 10px 0;
+  color: var(--cream);
+}
+
+h1 {
+  font-family: 'Caveat', cursive;
+  font-size: 39px;
+  font-weight: 600;
+  line-height: 1.12;
+}
+
+h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 23px;
+  line-height: 1.3;
+  font-weight: 500;
+}
+
+p {
+  font-size: 14px;
+  line-height: 1.65;
+  color: var(--muted);
+  margin: 10px 0;
 }
 
 button {
   font-family: inherit;
   cursor: pointer;
   border: 0;
-  border-radius: 16px;
-  padding: 14px 18px;
-  font-size: 15px;
+  border-radius: 14px;
+  padding: 13px 16px;
+  font-size: 14px;
   font-weight: 600;
-  transition: .2s;
+  transition: background .2s, border-color .2s, transform .2s;
+  -webkit-tap-highlight-color: transparent;
 }
 
-button:active { transform: scale(.97); }
+button:active { transform: scale(.98); }
+
+button:focus-visible, textarea:focus-visible {
+  outline: 2px solid #e6c4d0;
+  outline-offset: 3px;
+}
 
 .primary {
-  background: #824c5c;
-  color: #fff8f0;
+  background: #c39aa9;
+  color: #182238;
   flex: 1;
-  box-shadow: 0 4px 15px rgba(130,76,92,0.4);
+  box-shadow: 0 4px 18px rgba(195,154,169,.12);
 }
 
+.primary:hover { background: #d7b1bf; }
+
 .secondary {
-  background: #3b2d38;
-  color: #e8aab9;
+  background: rgba(255,255,255,.035);
+  color: #e5d4df;
+  border: 1px solid rgba(221,205,220,.22);
   flex: 1;
-  border: 1px solid #574250;
+}
+
+.secondary:hover { background: rgba(255,255,255,.08); }
+
+.buttons {
+  display: flex;
+  gap: 10px;
+  margin-top: 23px;
 }
 
 .full {
   width: 100%;
-  margin-top: 16px;
+  margin-top: 15px;
 }
 
-.options-stack {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  margin-top: 20px;
+.note {
+  font-size: 12px;
+  color: #9daabe;
+  margin-top: 21px;
 }
-
-.option-btn {
-  width: 100%;
-  background: #21192e;
-  border: 2px solid #48384f;
-  color: #f4e6ec;
-  text-align: left;
-  padding: 16px 20px;
-  border-radius: 16px;
-  font-weight: 600;
-  font-size: 15px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  transition: all 0.2s ease;
-}
-
-.option-btn span.icon { font-size: 18px; }
-
-.option-btn.selected {
-  border-color: #b87d92;
-  background: #472d38;
-  box-shadow: 0 0 0 3px rgba(232,170,185,0.2);
-  transform: translateX(4px);
-}
-
-textarea {
-  width: 100%;
-  border: 1px solid #574250;
-  background: #21192e;
-  border-radius: 14px;
-  padding: 14px;
-  font-family: inherit;
-  color: #f4e6ec;
-  font-size: 14px;
-  margin-top: 12px;
-  outline: none;
-  resize: vertical;
-  min-height: 80px;
-}
-textarea::placeholder { color: #8c7682; }
 
 .progress {
-  height: 6px;
-  background: #3b2d38;
-  border-radius: 10px;
-  margin-bottom: 20px;
+  height: 4px;
+  background: rgba(255,255,255,.10);
+  border-radius: 9px;
+  margin-bottom: 24px;
   overflow: hidden;
 }
 
 .bar {
   height: 100%;
-  background: #b87d92;
-  transition: .4s;
+  background: #d6b2c4;
+  border-radius: 9px;
+  transition: width .4s ease;
 }
 
-.note {
-  font-size: 12px;
-  color: #9e8290;
-  margin-top: 18px;
+.options-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 11px;
+  margin-top: 21px;
+}
+
+.option-btn {
+  width: 100%;
+  min-height: 94px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 14px;
+  padding: 12px 15px;
+  text-align: left;
+  color: var(--cream);
+  background: rgba(255,255,255,.035);
+  border: 1px solid rgba(219,211,226,.17);
+  border-radius: 17px;
+}
+
+.option-btn:hover {
+  background: rgba(255,255,255,.065);
+  border-color: rgba(217,169,184,.55);
+}
+
+.option-btn.selected {
+  border-color: var(--pink);
+  background: rgba(217,169,184,.12);
+  box-shadow: 0 0 0 2px rgba(217,169,184,.09);
+}
+
+.illustration {
+  flex: 0 0 76px;
+  width: 76px;
+  height: 66px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 12px;
+  background: rgba(207,196,222,.075);
+}
+
+.illustration svg {
+  width: 72px;
+  height: 62px;
+  overflow: visible;
+}
+
+.option-copy {
+  flex: 1;
+  font-size: 13px;
+  line-height: 1.45;
+}
+
+.option-copy strong {
+  display: block;
+  font-weight: 600;
+}
+
+.option-copy small {
+  display: block;
+  margin-top: 4px;
+  color: #aebbd0;
+  font-size: 11px;
+  font-weight: 400;
+}
+
+.check {
+  color: #e7c5d1;
+  font-size: 17px;
+  opacity: 0;
+}
+
+.selected .check { opacity: 1; }
+
+textarea {
+  width: 100%;
+  min-height: 100px;
+  margin-top: 12px;
+  padding: 14px;
+  resize: vertical;
+  border: 1px solid var(--border);
+  border-radius: 13px;
+  background: rgba(9,18,32,.45);
+  color: var(--cream);
+  font-family: inherit;
+  font-size: 14px;
+}
+
+textarea::placeholder { color: #8996ac; }
+
+.summary {
+  text-align: left;
+  background: rgba(9,18,32,.38);
+  border: 1px solid var(--border);
+  padding: 16px;
+  border-radius: 15px;
+  line-height: 1.85;
+  font-size: 13px;
+  margin-top: 17px;
+  overflow-wrap: anywhere;
+}
+
+.summary strong { color: #f0d5df; }
+
+@media (max-width: 360px) {
+  .card { padding: 25px 16px; }
+  .illustration { flex-basis: 65px; width: 65px; }
+  .illustration svg { width: 63px; }
+  .option-btn { gap: 10px; padding: 10px; }
+  h1 { font-size: 35px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    transition-duration: .01ms !important;
+  }
 }
 </style>
 </head>
-<body>
 
-<main class="card" id="app">
-  <div style="font-size: 36px; margin-bottom: 10px;">🌙✨</div>
+<body>
+<main class="card" id="app" aria-live="polite">
+  <div class="moon"></div>
   <h1>¿Tenemos una dateeee?</h1>
-  <div class="buttons" style="margin-top: 25px;">
-    <button class="primary" onclick="next()">ACEPTAR</button>
+  <p>Una nochecita, algo rico y tu compañía. ♡</p>
+  <div class="buttons">
+    <button class="primary" onclick="next()">ACEPTAR ♡</button>
     <button class="secondary" onclick="reject()">RECHAZAR</button>
   </div>
   <div class="note">Hecho con un poquito de amor ♡</div>
@@ -185,41 +359,166 @@ textarea::placeholder { color: #8c7682; }
 
 <script>
 const answers = {
-  dinner:"",
-  dessert:"",
-  movie:"",
-  music:"",
-  date:""
+  dinner: "",
+  dessert: "",
+  movie: "",
+  music: "",
+  date: ""
 };
 
-const whatsappNumber = "5493751358569"; // ACORDATE DE PONER TU NÚMERO ACÁ
+const whatsappNumber = "5493751358569";
 
 let step = 0;
+
+/* Dibujitos vectoriales: no necesitan archivos externos */
+function illustration(type) {
+  const drawings = {
+    pasta: `
+      <svg viewBox="0 0 100 76" fill="none"
+        stroke-linecap="round" stroke-linejoin="round">
+        <ellipse cx="50" cy="47" rx="36" ry="19"
+          fill="#d8c5bb" stroke="#f0e1d6" stroke-width="1.6"/>
+        <ellipse cx="50" cy="43" rx="30" ry="14"
+          fill="#e9d9c9" stroke="#bda99f" stroke-width="1.3"/>
+        <g stroke="#c98166" stroke-width="3">
+          <path d="M27 43 Q33 21 47 36 T70 36"/>
+          <path d="M31 49 Q38 26 51 42 T73 42"/>
+          <path d="M36 36 Q47 20 57 37 T67 48"/>
+          <path d="M34 44 Q47 55 59 34"/>
+          <path d="M43 49 Q52 25 65 39"/>
+        </g>
+        <g fill="#6d8c60">
+          <ellipse cx="43" cy="35" rx="3" ry="1.5" transform="rotate(-30 43 35)"/>
+          <ellipse cx="60" cy="46" rx="3" ry="1.5" transform="rotate(20 60 46)"/>
+        </g>
+        <circle cx="52" cy="38" r="2" fill="#b75f59"/>
+        <path d="M23 56 Q50 68 77 55" stroke="#b6a099" stroke-width="1.5"/>
+      </svg>`,
+
+    tart: `
+      <svg viewBox="0 0 100 76" fill="none"
+        stroke-linecap="round" stroke-linejoin="round">
+        <path d="M18 48 L27 24 Q50 16 73 24 L82 48
+          Q51 65 18 48Z"
+          fill="#e5c59c" stroke="#f0ddbd" stroke-width="1.6"/>
+        <path d="M23 43 Q50 55 77 43 L82 48
+          Q51 65 18 48Z"
+          fill="#c98b73" stroke="#b77a68" stroke-width="1"/>
+        <path d="M27 24 Q50 32 73 24" stroke="#f7e4c3" stroke-width="3"/>
+        <path d="M31 26 L35 33 M43 29 L47 35 M55 29 L59 35 M66 26 L70 33"
+          stroke="#bd8867" stroke-width="2"/>
+        <path d="M20 52 Q49 67 80 52" stroke="#f1ded0" stroke-width="1.5"/>
+        <path d="M30 20 Q50 13 70 20" stroke="#e6caa6" stroke-width="2"/>
+      </svg>`,
+
+    tiramisu: `
+      <svg viewBox="0 0 100 76" fill="none"
+        stroke-linecap="round" stroke-linejoin="round">
+        <path d="M24 19 L76 19 L70 59 Q50 68 30 59Z"
+          fill="#e7d5c4" stroke="#f2e5d8" stroke-width="1.4"/>
+        <path d="M27 25 L73 25 L72 32 L28 32Z"
+          fill="#8c594b"/>
+        <path d="M28 32 L72 32 L71 39 L29 39Z"
+          fill="#f0dfca"/>
+        <path d="M29 39 L71 39 L70 46 L30 46Z"
+          fill="#986653"/>
+        <path d="M30 46 L70 46 L69 53 Q50 59 31 53Z"
+          fill="#f0dfca"/>
+        <g fill="#6f473d">
+          <circle cx="38" cy="22" r="1.2"/>
+          <circle cx="47" cy="21" r="1.1"/>
+          <circle cx="57" cy="22" r="1.2"/>
+          <circle cx="64" cy="20" r="1"/>
+        </g>
+        <path d="M24 19 Q50 14 76 19" stroke="#f4e6d8" stroke-width="2"/>
+      </svg>`,
+
+    icecream: `
+      <svg viewBox="0 0 100 76" fill="none"
+        stroke-linecap="round" stroke-linejoin="round">
+        <path d="M36 37 L50 65 L65 37Z"
+          fill="#d8a77f" stroke="#f0d2ad" stroke-width="1.5"/>
+        <path d="M40 44 L59 44 M44 51 L56 51 M47 58 L53 58"
+          stroke="#ad795b" stroke-width="1.3"/>
+        <circle cx="39" cy="31" r="12" fill="#e7c5d5"
+          stroke="#f2e0e8" stroke-width="1.4"/>
+        <circle cx="59" cy="31" r="12" fill="#e9d8b8"
+          stroke="#f6ebd5" stroke-width="1.4"/>
+        <circle cx="49" cy="20" r="12" fill="#e9dce5"
+          stroke="#f5eaf0" stroke-width="1.4"/>
+        <path d="M44 15 Q49 11 53 15" stroke="#b99cac" stroke-width="1.5"/>
+        <circle cx="46" cy="18" r="1" fill="#a88b9b"/>
+        <circle cx="56" cy="29" r="1" fill="#bd987b"/>
+      </svg>`,
+
+    movie1: `
+      <svg viewBox="0 0 100 76" fill="none"
+        stroke-linecap="round" stroke-linejoin="round">
+        <rect x="22" y="15" width="56" height="44" rx="5"
+          fill="#314965" stroke="#b6c5d9" stroke-width="1.5"/>
+        <path d="M22 25 H78" stroke="#b6c5d9" stroke-width="1.2"/>
+        <path d="M29 19 L34 24 M43 19 L48 24 M57 19 L62 24 M69 19 L74 24"
+          stroke="#b6c5d9" stroke-width="1.5"/>
+        <circle cx="50" cy="41" r="11" stroke="#e3d5d7" stroke-width="1.3"/>
+        <path d="M46 34 L57 41 L46 48Z" fill="#e3d5d7"/>
+        <path d="M35 64 H65" stroke="#b6c5d9" stroke-width="2"/>
+      </svg>`,
+
+    movie2: `
+      <svg viewBox="0 0 100 76" fill="none"
+        stroke-linecap="round" stroke-linejoin="round">
+        <rect x="28" y="10" width="44" height="55" rx="4"
+          fill="#65566e" stroke="#d8c4dc" stroke-width="1.5"/>
+        <circle cx="50" cy="31" r="10" fill="#e5d4d5"/>
+        <path d="M39 49 Q50 35 61 49" stroke="#e5d4d5" stroke-width="3"/>
+        <path d="M37 55 H63" stroke="#b7a5c4" stroke-width="1.5"/>
+        <path d="M21 18 L24 22 M76 49 L80 45"
+          stroke="#e7d7ef" stroke-width="2"/>
+      </svg>`,
+
+    star: `
+      <svg viewBox="0 0 100 76" fill="none"
+        stroke-linecap="round" stroke-linejoin="round">
+        <path d="M50 10 L55 29 L75 29 L59 41 L65 61 L50 49
+          L35 61 L41 41 L25 29 L45 29Z"
+          fill="#d9c8e6" stroke="#f1e4f4" stroke-width="1.5"/>
+        <path d="M78 13 L80 19 L86 21 L80 23 L78 29
+          L76 23 L70 21 L76 19Z" fill="#e8d8c7"/>
+        <circle cx="22" cy="51" r="2" fill="#e8d8c7"/>
+      </svg>`
+  };
+
+  return drawings[type] || drawings.star;
+}
 
 function render(content) {
   const app = document.getElementById("app");
   app.style.animation = "none";
   void app.offsetWidth;
-  app.style.animation = "appear .55s ease";
+  app.style.animation = "appear .5s ease both";
   app.innerHTML = content;
+  window.scrollTo({ top: 0, behavior: "smooth" });
 }
 
 function progress(n) {
-  return `<div class="progress"><div class="bar" style="width:${n/5*100}%"></div></div>`;
+  return `<div class="progress" aria-label="Paso ${n} de 5">
+    <div class="bar" style="width:${n/5*100}%"></div>
+  </div>`;
 }
 
 function reject() {
   render(`
-    <div style="font-size: 36px; margin-bottom: 10px;">🪐</div>
+    <div class="moon"></div>
     <h2>¿Segurísimo?</h2>
-    <p>Prometo buena comida y linda compañía bajo las estrellas... pero si no querés, todo bien. ♡</p>
-    <button class="primary full" onclick="next()">Bueno, ¡acepto! 💗</button>
+    <p>Prometo algo rico y linda compañía bajo las estrellas... pero si no querés, todo bien. ♡</p>
+    <button class="primary full" onclick="next()">Bueno, ¡acepto! ♡</button>
     <button class="secondary full" onclick="decline()">No, gracias</button>
   `);
 }
 
 function decline() {
   render(`
+    <div class="moon"></div>
     <h2>¡Gracias por responder!</h2>
     <p>No pasa nada. La invitación queda hecha sin presiones. ♡</p>
     <button class="secondary full" onclick="location.reload()">Volver al inicio</button>
@@ -235,116 +534,144 @@ function dinner() {
   render(`
     ${progress(1)}
     <h2>¿Qué cenamos?</h2>
+    <p>Elegí lo que más te tiente.</p>
     <div class="options-stack">
-      ${textOption('Tallarines caseros con salsita', 'dinner', '🍝')}
-      ${textOption('Tarta de jamón y queso', 'dinner', '🥧')}
+      ${textOption('Tallarines caseros con salsita', 'dinner', 'pasta', 'Hechos con amor ♡')}
+      ${textOption('Tarta de jamón y queso', 'dinner', 'tart', 'Clásica y rica')}
     </div>
     <button class="primary full" onclick="dessert()">Continuar ♡</button>
   `);
 }
 
 function dessert() {
-  if(!answers.dinner) return alert("¡Elegí primero la cena! ♡");
+  if (!answers.dinner) return alert("¡Elegí primero la cena! ♡");
   step = 2;
   render(`
     ${progress(2)}
     <h2>Obviamente también habrá postre</h2>
+    <p>Porque una cita sin algo dulce...</p>
     <div class="options-stack">
-      ${textOption('Tiramisú (ponele)', 'dessert', '🍰')}
-      ${textOption('Heladito', 'dessert', '🍨')}
+      ${textOption('Tiramisú (ponele)', 'dessert', 'tiramisu', 'La intención es lo que cuenta')}
+      ${textOption('Heladito', 'dessert', 'icecream', 'Nunca falla')}
     </div>
     <button class="primary full" onclick="movie()">Siguiente ♡</button>
   `);
 }
 
 function movie() {
-  if(!answers.dessert) return alert("¡Falta elegir el postre! ♡");
+  if (!answers.dessert) return alert("¡Falta elegir el postre! ♡");
   step = 3;
   render(`
     ${progress(3)}
     <h2>¿Qué peli vemos?</h2>
+    <p>Mantita, sillón y película.</p>
     <div class="options-stack">
-      ${textOption('Destino Oculto', 'movie', '🎬')}
-      ${textOption('Cásate con mi esposo', 'movie', '💫')}
+      ${textOption('Destino Oculto', 'movie', 'movie1', 'Una noche de película')}
+      ${textOption('Cásate con mi esposo', 'movie', 'movie2', 'A ver qué tal')}
     </div>
     <button class="primary full" onclick="suggestions()">Continuar ♡</button>
   `);
 }
 
-function textOption(name, key, icon) {
+function textOption(name, key, type, subtitle = '') {
   const selected = answers[key] === name ? "selected" : "";
+  const safeName = escapeHTML(name);
+  const safeKey = escapeHTML(key);
+
   return `
-    <button class="option-btn ${selected}" onclick="choose('${key}','${name}',this)">
-      <span>${name}</span>
-      <span class="icon">${icon}</span>
+    <button type="button"
+      class="option-btn ${selected}"
+      aria-pressed="${Boolean(selected)}"
+      onclick="choose('${safeKey}','${safeName}',this)">
+      <span class="illustration">${illustration(type)}</span>
+      <span class="option-copy">
+        <strong>${safeName}</strong>
+        <small>${escapeHTML(subtitle)}</small>
+      </span>
+      <span class="check" aria-hidden="true">♡</span>
     </button>
   `;
 }
 
 function suggestions() {
-  if(!answers.movie) return alert("¡Elegí una película! ♡");
+  if (!answers.movie) return alert("¡Elegí una película! ♡");
   step = 4;
   render(`
     ${progress(4)}
+    <div class="moon"></div>
     <h2>Cajita de sugerencias</h2>
-    <p>Una canción, un detalle o lo que quieras acotar:</p>
-    <textarea id="music" placeholder="Escribí tus sugerencias acá..."></textarea>
+    <p>Una canción, un detalle o lo que quieras acotar. También podés dejarlo en blanco. ♡</p>
+    <textarea id="music" maxlength="1000"
+      placeholder="Se me ocurre que podríamos..."></textarea>
     <button class="primary full" onclick="dates()">¡Tengo una idea! ♡</button>
   `);
 }
 
 function dates() {
   const musicEl = document.getElementById("music");
-  if(musicEl) answers.music = musicEl.value;
-  
+  if (musicEl) answers.music = musicEl.value.trim();
+
   step = 5;
   render(`
     ${progress(5)}
     <h2>Elegí la fecha</h2>
+    <p>¿Cuándo nos vemos?</p>
     <div class="options-stack">
-      ${textOption('Sábado 07/11', 'date', '✨')}
-      ${textOption('Domingo 08/11', 'date', '✨')}
-      ${textOption('Sábado 14/11', 'date', '✨')}
+      ${textOption('Sábado 07/11', 'date', 'star', 'Una noche bajo las estrellas')}
+      ${textOption('Domingo 08/11', 'date', 'star', 'Un plan tranqui')}
+      ${textOption('Sábado 14/11', 'date', 'star', 'Otra noche especial')}
     </div>
-    <div class="note">Se aceptan sugerencias en la cajita anterior</div>
+    <div class="note">¿Otra fecha? Podés proponerla por WhatsApp. ♡</div>
   `);
 }
 
 function choose(key, value, element) {
   answers[key] = value;
-  element.parentElement.querySelectorAll(".option-btn").forEach(x => x.classList.remove("selected"));
+
+  element.parentElement.querySelectorAll(".option-btn").forEach(button => {
+    button.classList.remove("selected");
+    button.setAttribute("aria-pressed", "false");
+  });
+
   element.classList.add("selected");
-  
-  if(key === 'date') {
+  element.setAttribute("aria-pressed", "true");
+
+  if (key === "date") {
     setTimeout(finalScreen, 350);
   }
 }
 
 function finalScreen() {
   render(`
-    <div style="font-size: 36px; margin-bottom: 5px;">🌌</div>
-    <h2>¡Todo listo!</h2>
-    <div style="text-align:left;background:#21192e;border:1px solid #48384f;padding:14px;border-radius:14px;line-height:1.6;font-size:13px; margin-top: 15px; color:#f4e6ec;">
-      🍽️ Cena: <b>${answers.dinner}</b><br>
-      🍰 Postre: <b>${answers.dessert}</b><br>
-      🎬 Película: <b>${answers.movie}</b><br>
-      📅 Fecha: <b>${answers.date}</b><br>
-      🎵 Sugerencia: ${answers.music ? escapeHTML(answers.music) : "Ninguna"}<br><br>
-      ⏰ <b>Llegada:</b> 21:00 – 22:00 PUNTUAL<br>
+    <div class="moon"></div>
+    <h2>¡Tenemos un plan! ♡</h2>
+    <p>Una cita, elegida entre los dos.</p>
+    <div class="summary">
+      🍽️ <strong>Cena:</strong> ${escapeHTML(answers.dinner)}<br>
+      🍰 <strong>Postre:</strong> ${escapeHTML(answers.dessert)}<br>
+      🎬 <strong>Película:</strong> ${escapeHTML(answers.movie)}<br>
+      📅 <strong>Fecha:</strong> ${escapeHTML(answers.date)}<br>
+      🎵 <strong>Sugerencia:</strong> ${answers.music ? escapeHTML(answers.music) : "Ninguna"}<br><br>
+      ⏰ <strong>Llegada:</strong> 21:00–22:00, puntual ♡<br>
       <i>(si no, llegar con vino en mano 🍷)</i>
     </div>
-    <button class="primary full" onclick="sendWhatsApp()">CONFIRMAR ASISTENCIA 💌</button>
+    <button class="primary full" onclick="sendWhatsApp()">CONFIRMAR ASISTENCIA ♡</button>
+    <button class="secondary full" onclick="location.reload()">Volver al inicio</button>
   `);
 }
 
 function escapeHTML(text) {
-  return text.replace(/[&<>"']/g, c => ({
-    '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'
+  return String(text).replace(/[&<>"']/g, c => ({
+    '&': '&amp;',
+    '<': '&lt;',
+    '>': '&gt;',
+    '"': '&quot;',
+    "'": '&#39;'
   }[c]));
 }
 
 function sendWhatsApp() {
-  const text = `¡Mis elecciones para nuestra date! 💗
+  const message = `¡Mis elecciones para nuestra date! ♡
 
 Cena: ${answers.dinner}
 Postre: ${answers.dessert}
@@ -354,14 +681,13 @@ Sugerencias: ${answers.music || "Ninguna"}
 
 ¡Nos vemos! ♡`;
 
-  const url = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(text)}`;
-
-  if(whatsappNumber.includes("TU_NUMERO")) {
-    alert("Cami, acordate de cambiar 'TU_NUMERO' en el código por tu número de WhatsApp real con código de país.");
+  if (whatsappNumber.includes("TU_NUMERO")) {
+    alert("Acordate de cambiar 'TU_NUMERO' por tu número de WhatsApp con código de país, sin el signo + ni espacios.");
     return;
   }
 
-  window.open(url, "_blank");
+  const url = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
+  window.open(url, "_blank", "noopener,noreferrer");
 }
 </script>
 </body>
