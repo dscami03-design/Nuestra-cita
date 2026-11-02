@@ -9,7 +9,7 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600;700&family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;1,500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;1,500&display=swap" rel="stylesheet">
 
 <style>
 * { box-sizing: border-box; }
@@ -42,13 +42,13 @@ body {
   overflow-x: hidden;
 }
 
-/* Estrellas pequeñas y discretas */
+/* Cielo estrellado */
 body::before {
   content: "";
   position: fixed;
   inset: 0;
   pointer-events: none;
-  opacity: .62;
+  opacity: .75;
   background-image:
     radial-gradient(1px 1px at 12% 18%, #fff 99%, transparent),
     radial-gradient(1.5px 1.5px at 82% 12%, #e8d7e9 99%, transparent),
@@ -57,18 +57,23 @@ body::before {
     radial-gradient(1.5px 1.5px at 91% 72%, #fff 99%, transparent),
     radial-gradient(1px 1px at 44% 88%, #e8d7e9 99%, transparent),
     radial-gradient(1px 1px at 54% 9%, #fff 99%, transparent),
-    radial-gradient(1px 1px at 7% 84%, #fff 99%, transparent);
+    radial-gradient(1px 1px at 7% 84%, #fff 99%, transparent),
+    radial-gradient(1px 1px at 35% 30%, #fff 99%, transparent),
+    radial-gradient(1.5px 1.5px at 63% 79%, #fff 99%, transparent),
+    radial-gradient(1px 1px at 95% 42%, #e8d7e9 99%, transparent);
   z-index: 0;
 }
 
+/* Pequeños detalles románticos */
 body::after {
-  content: "✦";
+  content: "♡";
   position: fixed;
   top: 8%;
   right: 10%;
-  font-size: 16px;
-  color: #d9c8e6;
-  opacity: .65;
+  font-size: 22px;
+  color: #d9b9ce;
+  opacity: .55;
+  transform: rotate(12deg);
   pointer-events: none;
 }
 
@@ -108,7 +113,7 @@ body::after {
 .moon {
   width: 43px;
   height: 43px;
-  margin: 0 auto 9px;
+  margin: 0 auto 14px;
   border-radius: 50%;
   background: #f1e7cf;
   box-shadow: 0 0 24px rgba(241,231,207,.13);
@@ -129,20 +134,18 @@ body::after {
 h1, h2 {
   margin: 10px 0;
   color: var(--cream);
+  font-family: 'Playfair Display', serif;
+  font-weight: 500;
 }
 
 h1 {
-  font-family: 'Caveat', cursive;
-  font-size: 39px;
-  font-weight: 600;
-  line-height: 1.12;
+  font-size: 29px;
+  line-height: 1.3;
 }
 
 h2 {
-  font-family: 'Playfair Display', serif;
   font-size: 23px;
   line-height: 1.3;
-  font-weight: 500;
 }
 
 p {
@@ -166,7 +169,7 @@ button {
 
 button:active { transform: scale(.98); }
 
-button:focus-visible, textarea:focus-visible {
+button:focus-visible {
   outline: 2px solid #e6c4d0;
   outline-offset: 3px;
 }
@@ -187,23 +190,15 @@ button:focus-visible, textarea:focus-visible {
   flex: 1;
 }
 
-.secondary:hover { background: rgba(255,255,255,.08); }
-
 .buttons {
   display: flex;
   gap: 10px;
-  margin-top: 23px;
+  margin-top: 25px;
 }
 
 .full {
   width: 100%;
   margin-top: 15px;
-}
-
-.note {
-  font-size: 12px;
-  color: #9daabe;
-  margin-top: 21px;
 }
 
 .progress {
@@ -268,7 +263,6 @@ button:focus-visible, textarea:focus-visible {
 .illustration svg {
   width: 72px;
   height: 62px;
-  overflow: visible;
 }
 
 .option-copy {
@@ -282,17 +276,9 @@ button:focus-visible, textarea:focus-visible {
   font-weight: 600;
 }
 
-.option-copy small {
-  display: block;
-  margin-top: 4px;
-  color: #aebbd0;
-  font-size: 11px;
-  font-weight: 400;
-}
-
 .check {
   color: #e7c5d1;
-  font-size: 17px;
+  font-size: 19px;
   opacity: 0;
 }
 
@@ -333,7 +319,7 @@ textarea::placeholder { color: #8996ac; }
   .illustration { flex-basis: 65px; width: 65px; }
   .illustration svg { width: 63px; }
   .option-btn { gap: 10px; padding: 10px; }
-  h1 { font-size: 35px; }
+  h1 { font-size: 27px; }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -346,15 +332,15 @@ textarea::placeholder { color: #8996ac; }
 </head>
 
 <body>
+
 <main class="card" id="app" aria-live="polite">
   <div class="moon"></div>
   <h1>¿Tenemos una dateeee?</h1>
-  <p>Una nochecita, algo rico y tu compañía. ♡</p>
+
   <div class="buttons">
-    <button class="primary" onclick="next()">ACEPTAR ♡</button>
+    <button class="primary" onclick="next()">ACEPTAR</button>
     <button class="secondary" onclick="reject()">RECHAZAR</button>
   </div>
-  <div class="note">Hecho con un poquito de amor ♡</div>
 </main>
 
 <script>
@@ -370,7 +356,7 @@ const whatsappNumber = "5493751358569";
 
 let step = 0;
 
-/* Dibujitos vectoriales: no necesitan archivos externos */
+/* Ilustraciones vectoriales */
 function illustration(type) {
   const drawings = {
     pasta: `
@@ -388,8 +374,8 @@ function illustration(type) {
           <path d="M43 49 Q52 25 65 39"/>
         </g>
         <g fill="#6d8c60">
-          <ellipse cx="43" cy="35" rx="3" ry="1.5" transform="rotate(-30 43 35)"/>
-          <ellipse cx="60" cy="46" rx="3" ry="1.5" transform="rotate(20 60 46)"/>
+          <ellipse cx="43" cy="35" rx="3" ry="1.5"/>
+          <ellipse cx="60" cy="46" rx="3" ry="1.5"/>
         </g>
         <circle cx="52" cy="38" r="2" fill="#b75f59"/>
         <path d="M23 56 Q50 68 77 55" stroke="#b6a099" stroke-width="1.5"/>
@@ -408,7 +394,6 @@ function illustration(type) {
         <path d="M31 26 L35 33 M43 29 L47 35 M55 29 L59 35 M66 26 L70 33"
           stroke="#bd8867" stroke-width="2"/>
         <path d="M20 52 Q49 67 80 52" stroke="#f1ded0" stroke-width="1.5"/>
-        <path d="M30 20 Q50 13 70 20" stroke="#e6caa6" stroke-width="2"/>
       </svg>`,
 
     tiramisu: `
@@ -416,14 +401,10 @@ function illustration(type) {
         stroke-linecap="round" stroke-linejoin="round">
         <path d="M24 19 L76 19 L70 59 Q50 68 30 59Z"
           fill="#e7d5c4" stroke="#f2e5d8" stroke-width="1.4"/>
-        <path d="M27 25 L73 25 L72 32 L28 32Z"
-          fill="#8c594b"/>
-        <path d="M28 32 L72 32 L71 39 L29 39Z"
-          fill="#f0dfca"/>
-        <path d="M29 39 L71 39 L70 46 L30 46Z"
-          fill="#986653"/>
-        <path d="M30 46 L70 46 L69 53 Q50 59 31 53Z"
-          fill="#f0dfca"/>
+        <path d="M27 25 L73 25 L72 32 L28 32Z" fill="#8c594b"/>
+        <path d="M28 32 L72 32 L71 39 L29 39Z" fill="#f0dfca"/>
+        <path d="M29 39 L71 39 L70 46 L30 46Z" fill="#986653"/>
+        <path d="M30 46 L70 46 L69 53 Q50 59 31 53Z" fill="#f0dfca"/>
         <g fill="#6f473d">
           <circle cx="38" cy="22" r="1.2"/>
           <circle cx="47" cy="21" r="1.1"/>
@@ -447,8 +428,6 @@ function illustration(type) {
         <circle cx="49" cy="20" r="12" fill="#e9dce5"
           stroke="#f5eaf0" stroke-width="1.4"/>
         <path d="M44 15 Q49 11 53 15" stroke="#b99cac" stroke-width="1.5"/>
-        <circle cx="46" cy="18" r="1" fill="#a88b9b"/>
-        <circle cx="56" cy="29" r="1" fill="#bd987b"/>
       </svg>`,
 
     movie1: `
@@ -472,19 +451,16 @@ function illustration(type) {
         <circle cx="50" cy="31" r="10" fill="#e5d4d5"/>
         <path d="M39 49 Q50 35 61 49" stroke="#e5d4d5" stroke-width="3"/>
         <path d="M37 55 H63" stroke="#b7a5c4" stroke-width="1.5"/>
-        <path d="M21 18 L24 22 M76 49 L80 45"
-          stroke="#e7d7ef" stroke-width="2"/>
       </svg>`,
 
     star: `
       <svg viewBox="0 0 100 76" fill="none"
         stroke-linecap="round" stroke-linejoin="round">
-        <path d="M50 10 L55 29 L75 29 L59 41 L65 61 L50 49
-          L35 61 L41 41 L25 29 L45 29Z"
+        <path d="M50 10 L55 29 L75 29 L59 41 L65 61
+          L50 49 L35 61 L41 41 L25 29 L45 29Z"
           fill="#d9c8e6" stroke="#f1e4f4" stroke-width="1.5"/>
         <path d="M78 13 L80 19 L86 21 L80 23 L78 29
           L76 23 L70 21 L76 19Z" fill="#e8d8c7"/>
-        <circle cx="22" cy="51" r="2" fill="#e8d8c7"/>
       </svg>`
   };
 
@@ -534,10 +510,9 @@ function dinner() {
   render(`
     ${progress(1)}
     <h2>¿Qué cenamos?</h2>
-    <p>Elegí lo que más te tiente.</p>
     <div class="options-stack">
-      ${textOption('Tallarines caseros con salsita', 'dinner', 'pasta', 'Hechos con amor ♡')}
-      ${textOption('Tarta de jamón y queso', 'dinner', 'tart', 'Clásica y rica')}
+      ${textOption('Tallarines caseros con salsita', 'dinner', 'pasta')}
+      ${textOption('Tarta de jamón y queso', 'dinner', 'tart')}
     </div>
     <button class="primary full" onclick="dessert()">Continuar ♡</button>
   `);
@@ -549,10 +524,9 @@ function dessert() {
   render(`
     ${progress(2)}
     <h2>Obviamente también habrá postre</h2>
-    <p>Porque una cita sin algo dulce...</p>
     <div class="options-stack">
-      ${textOption('Tiramisú (ponele)', 'dessert', 'tiramisu', 'La intención es lo que cuenta')}
-      ${textOption('Heladito', 'dessert', 'icecream', 'Nunca falla')}
+      ${textOption('Tiramisú (ponele) la intención es lo que cuenta', 'dessert', 'tiramisu')}
+      ${textOption('Heladito', 'dessert', 'icecream')}
     </div>
     <button class="primary full" onclick="movie()">Siguiente ♡</button>
   `);
@@ -564,16 +538,15 @@ function movie() {
   render(`
     ${progress(3)}
     <h2>¿Qué peli vemos?</h2>
-    <p>Mantita, sillón y película.</p>
     <div class="options-stack">
-      ${textOption('Destino Oculto', 'movie', 'movie1', 'Una noche de película')}
-      ${textOption('Cásate con mi esposo', 'movie', 'movie2', 'A ver qué tal')}
+      ${textOption('Destino Oculto', 'movie', 'movie1')}
+      ${textOption('Cásate con mi esposo', 'movie', 'movie2')}
     </div>
     <button class="primary full" onclick="suggestions()">Continuar ♡</button>
   `);
 }
 
-function textOption(name, key, type, subtitle = '') {
+function textOption(name, key, type) {
   const selected = answers[key] === name ? "selected" : "";
   const safeName = escapeHTML(name);
   const safeKey = escapeHTML(key);
@@ -586,7 +559,6 @@ function textOption(name, key, type, subtitle = '') {
       <span class="illustration">${illustration(type)}</span>
       <span class="option-copy">
         <strong>${safeName}</strong>
-        <small>${escapeHTML(subtitle)}</small>
       </span>
       <span class="check" aria-hidden="true">♡</span>
     </button>
@@ -600,9 +572,9 @@ function suggestions() {
     ${progress(4)}
     <div class="moon"></div>
     <h2>Cajita de sugerencias</h2>
-    <p>Una canción, un detalle o lo que quieras acotar. También podés dejarlo en blanco. ♡</p>
+    <p>Algún detalle o lo que quieras aportar</p>
     <textarea id="music" maxlength="1000"
-      placeholder="Se me ocurre que podríamos..."></textarea>
+      placeholder="Escribí acá..."></textarea>
     <button class="primary full" onclick="dates()">¡Tengo una idea! ♡</button>
   `);
 }
@@ -615,13 +587,12 @@ function dates() {
   render(`
     ${progress(5)}
     <h2>Elegí la fecha</h2>
-    <p>¿Cuándo nos vemos?</p>
     <div class="options-stack">
-      ${textOption('Sábado 07/11', 'date', 'star', 'Una noche bajo las estrellas')}
-      ${textOption('Domingo 08/11', 'date', 'star', 'Un plan tranqui')}
-      ${textOption('Sábado 14/11', 'date', 'star', 'Otra noche especial')}
+      ${textOption('Sábado 07/11', 'date', 'star')}
+      ${textOption('Domingo 08/11', 'date', 'star')}
+      ${textOption('Sábado 14/11', 'date', 'star')}
     </div>
-    <div class="note">¿Otra fecha? Podés proponerla por WhatsApp. ♡</div>
+    <p style="margin-top:20px;">¿Otra fecha? No hay jajaj</p>
   `);
 }
 
@@ -644,19 +615,16 @@ function choose(key, value, element) {
 function finalScreen() {
   render(`
     <div class="moon"></div>
-    <h2>¡Tenemos un plan! ♡</h2>
-    <p>Una cita, elegida entre los dos.</p>
+    <h2>¡Todo listo!</h2>
     <div class="summary">
       🍽️ <strong>Cena:</strong> ${escapeHTML(answers.dinner)}<br>
       🍰 <strong>Postre:</strong> ${escapeHTML(answers.dessert)}<br>
       🎬 <strong>Película:</strong> ${escapeHTML(answers.movie)}<br>
       📅 <strong>Fecha:</strong> ${escapeHTML(answers.date)}<br>
       🎵 <strong>Sugerencia:</strong> ${answers.music ? escapeHTML(answers.music) : "Ninguna"}<br><br>
-      ⏰ <strong>Llegada:</strong> 21:00–22:00, puntual ♡<br>
-      <i>(si no, llegar con vino en mano 🍷)</i>
+      ⏰ <strong>Llegada:</strong> 21:00-22:00, puntual por el amor de diossss
     </div>
-    <button class="primary full" onclick="sendWhatsApp()">CONFIRMAR ASISTENCIA ♡</button>
-    <button class="secondary full" onclick="location.reload()">Volver al inicio</button>
+    <button class="primary full" onclick="sendWhatsApp()">CONFIRMAR ASISTENCIA</button>
   `);
 }
 
@@ -679,6 +647,8 @@ Película: ${answers.movie}
 Fecha: ${answers.date}
 Sugerencias: ${answers.music || "Ninguna"}
 
+Llegada: 21:00-22:00, puntual por el amor de diossss
+
 ¡Nos vemos! ♡`;
 
   if (whatsappNumber.includes("TU_NUMERO")) {
@@ -690,5 +660,6 @@ Sugerencias: ${answers.music || "Ninguna"}
   window.open(url, "_blank", "noopener,noreferrer");
 }
 </script>
+
 </body>
 </html>
